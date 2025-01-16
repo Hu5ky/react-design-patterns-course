@@ -1,4 +1,5 @@
 // import './App.css';
+import { LargePersonListItem } from './people/LargePersonListItem.tsx';
 import { SmallPersonListItem } from './people/SmallPersonListItem.tsx';
 import { RegularList } from './RegularList.tsx';
 
@@ -22,12 +23,16 @@ const peopleData = [{
 function App() {
   return (
     <>
-      <RegularList 
-        items={peopleData}
-        resourceName="person"
-        itemComponent={SmallPersonListItem}
+      <RegularList
+          items={peopleData}
+          resourceName="person"
+          itemComponent={SmallPersonListItem}
       />
-
+      <RegularList
+          items={peopleData}
+          resourceName="person"
+          itemComponent={LargePersonListItem}
+      />
     </>
   )
 }

@@ -2,10 +2,10 @@ interface Person {
     name: string;
     age: number;
     hairColor: string;
-    hobbies: Array<string>;
+    hobbies: string[];
 }
 
-export const LargePersonListItem: React.FC<Person> = ( person ) => {
+export const LargePersonListItem = ({ person }: { person: Person }) => {
     const { name, age, hairColor, hobbies } = person;
     return (
         <>
@@ -19,3 +19,5 @@ export const LargePersonListItem: React.FC<Person> = ( person ) => {
         </>
     );
 }
+
+export default LargePersonListItem

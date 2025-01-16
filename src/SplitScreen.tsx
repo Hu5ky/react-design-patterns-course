@@ -1,30 +1,47 @@
 import styled from 'styled-components';
+import { ReactElement } from 'react';
 
 const Container = styled.div`
     display: flex;
 `;
 
-const Pane = styled.div`
-    flex: 1;
+/*
+    <{ weight: number }>: TypeScript props definition
+    ${...}: Dynamic expression
+    ({weight}): Destructured prop weight from Pane
+*/
+interface PaneProps {
+    $weight: number; 
+}
+
+const Pane = styled.div<PaneProps>`
+    flex: ${({ $weight }) => $weight};
 `;
 
 interface SplitScreenProps {
-    left: React.ComponentType;
-    right: React.ComponentType;
+    children: [ReactElement, ReactElement];
+    leftWeight?: number;
+    rightWeight?: number;
 }
 
+/*
+    React.FC or React.FunctionalComponent: React component that return JSX or null with
+    prop types defined by SplitScreenProps interface
+*/
 export const SplitScreen: React.FC<SplitScreenProps> = ({
-    left: Left,
-    right: Right,
+    children,
+    leftWeight = 1,
+    rightWeight = 1,
 }) => {
+    const [left, right] = children;
     return (
         <>
             <Container>
-                <Pane>
-                    <Left />
+                <Pane $weight={leftWeight}>
+                    {left}
                 </Pane>
-                <Pane>
-                    <Right />
+                <Pane $weight={rightWeight}>
+                    {right}
                 </Pane>
             </Container>
         </>

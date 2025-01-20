@@ -1,6 +1,6 @@
 import { Product } from './ProductInterface';
 
-export const LargeProductListItem = ( {product} : {product : Product} ) => {
+export const ProductInfo = ( {product} : {product : Product} ) => {
     const { name, price, description, rating } = product;
 
     return (
@@ -14,4 +14,4 @@ export const LargeProductListItem = ( {product} : {product : Product} ) => {
     );
 }
 
-export default LargeProductListItem
+export default ProductInfo

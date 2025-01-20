@@ -1,6 +1,6 @@
-import { Person } from "./PersonInterface";
+import { User } from "./UserInterface";
 
-export const personData: Person[] = [{
+export const users: User[] = [{
 	name: 'John Doe',
 	age: 54,
 	hairColor: 'brown',
@@ -17,4 +17,4 @@ export const personData: Person[] = [{
 	hobbies: ['biology', 'medicine', 'gymnastics'],
 }];
 
-export default personData
+export default users

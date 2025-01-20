@@ -1,4 +1,5 @@
-export interface Person {
+export interface User {
+    id?: number;
     name: string;
     age: number;
     hairColor: string;

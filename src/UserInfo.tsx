@@ -1,7 +1,8 @@
-import { Person } from './PersonInterface';
+import { User } from './UserInterface';
 
-export const LargePersonListItem = ({ person }: { person: Person }) => {
-    const { name, age, hairColor, hobbies } = person;
+export const UserInfo = ({ user }: { user: User }) => {
+    const { name, age, hairColor, hobbies } = user;
+    
     return (
         <>
             <h3>Name: {name}</h3>
@@ -15,4 +16,4 @@ export const LargePersonListItem = ({ person }: { person: Person }) => {
     );
 }
 
-export default LargePersonListItem
+export default UserInfo

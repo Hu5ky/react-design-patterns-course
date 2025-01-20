@@ -1,11 +1,11 @@
-import { Person } from '../people/PersonInterface';
-import { Product } from '../products/ProductInterface';
+import { User } from '../UserInterface';
+import { Product } from '../ProductInterface';
 
 export interface ListProps {
     itemComponent: React.ComponentType<any>;
     // itemComponent: React.ComponentType<{ person: Person }>;
     propName: string;
-    items: Person[] | Product[];
+    items: User[] | Product[];
 }
 
 export default ListProps

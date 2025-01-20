@@ -1,6 +1,6 @@
 import { Product } from "./ProductInterface";
 
-export const productData: Product[] = [{
+export const products: Product[] = [{
 	name: 'Flat-Screen TV',
 	price: '$300',
 	description: 'Huge LCD screen, a great deal',
@@ -17,4 +17,4 @@ export const productData: Product[] = [{
   	rating: 4.2,
 }];
 
-export default productData
+export default products

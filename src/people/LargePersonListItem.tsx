@@ -1,9 +1,4 @@
-interface Person {
-    name: string;
-    age: number;
-    hairColor: string;
-    hobbies: string[];
-}
+import { Person } from './PersonInterface';
 
 export const LargePersonListItem = ({ person }: { person: Person }) => {
     const { name, age, hairColor, hobbies } = person;

@@ -1,4 +1,4 @@
-export const peopleData = [{
+export const personData = [{
 	name: 'John Doe',
 	age: 54,
 	hairColor: 'brown',
@@ -15,4 +15,4 @@ export const peopleData = [{
 	hobbies: ['biology', 'medicine', 'gymnastics'],
 }];
 
-export default peopleData
+export default personData

@@ -6,11 +6,17 @@ import { RegularList } from './lists/RegularList.tsx';
 import { personData } from './people/PersonData.tsx';
 import { productData } from './products/ProductData.tsx'
 import { NumberedList } from './lists/NumberedList.tsx';
+import Modal from './Modal.tsx';
 
 function App() {
   return (
     <>
-      <RegularList
+      <Modal>
+        <LargeProductListItem
+          product={productData[0]}
+        />
+      </Modal>
+      {/* <RegularList
           itemComponent={SmallPersonListItem}
           propName="person"
           items={personData}
@@ -29,7 +35,7 @@ function App() {
           itemComponent={LargeProductListItem}
           propName="product"
           items={productData}
-      />
+      /> */}
     </>
   )
 }

@@ -1,13 +1,6 @@
-import { Person } from './people/PersonInterface';
+import ListProps from './ListPropsInterface';
 
-interface RegularListProps {
-    itemComponent: React.ComponentType<any>;
-    // itemComponent: React.ComponentType<{ person: Person }>;
-    propName: string;
-    items: Person[];
-}
-
-export const RegularList: React.FC<RegularListProps> = ({ 
+export const RegularList: React.FC<ListProps> = ({ 
     itemComponent: ItemComponent,
     propName,
     items,

@@ -1,23 +1,11 @@
 import { LargePersonListItem } from './people/LargePersonListItem.tsx';
 import { SmallPersonListItem } from './people/SmallPersonListItem.tsx';
-import { RegularList } from './RegularList.tsx';
-
-const peopleData = [{
-	name: 'John Doe',
-	age: 54,
-	hairColor: 'brown',
-	hobbies: ['swimming', 'bicycling', 'video games'],
-}, {
-	name: 'Brenda Smith',
-	age: 33,
-	hairColor: 'black',
-	hobbies: ['golf', 'mathematics'],
-}, {
-	name: 'Jane Garcia',
-	age: 27,
-	hairColor: 'blonde',
-	hobbies: ['biology', 'medicine', 'gymnastics'],
-}];
+import { SmallProductListItem } from './products/SmallProductListItem.tsx';
+import { LargeProductListItem } from './products/LargeProductListItem.tsx';
+import { RegularList } from './lists/RegularList.tsx';
+import { personData } from './people/PersonData.tsx';
+import { productData } from './products/ProductData.tsx'
+import { NumberedList } from './lists/NumberedList.tsx';
 
 function App() {
   return (
@@ -25,12 +13,22 @@ function App() {
       <RegularList
           itemComponent={SmallPersonListItem}
           propName="person"
-          items={peopleData}
+          items={personData}
+      />
+      <NumberedList
+          itemComponent={LargePersonListItem}
+          propName="person"
+          items={personData}
       />
       <RegularList
-          items={peopleData}
-          propName="person"
-          itemComponent={LargePersonListItem}
+          itemComponent={SmallProductListItem}
+          propName="product"
+          items={productData}
+      />
+      <NumberedList
+          itemComponent={LargeProductListItem}
+          propName="product"
+          items={productData}
       />
     </>
   )

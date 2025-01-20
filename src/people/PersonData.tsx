@@ -1,4 +1,6 @@
-export const personData = [{
+import { Person } from "./PersonInterface";
+
+export const personData: Person[] = [{
 	name: 'John Doe',
 	age: 54,
 	hairColor: 'brown',

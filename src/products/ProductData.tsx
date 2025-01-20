@@ -1,4 +1,6 @@
-const products = [{
+import { Product } from "./ProductInterface";
+
+export const productData: Product[] = [{
 	name: 'Flat-Screen TV',
 	price: '$300',
 	description: 'Huge LCD screen, a great deal',
@@ -12,5 +14,7 @@ const products = [{
 	name: 'Running Shoes',
 	price: '$120',
 	description: 'State-of-the-art technology for optimum running',
-  rating: 4.2,
+  	rating: 4.2,
 }];
+
+export default productData

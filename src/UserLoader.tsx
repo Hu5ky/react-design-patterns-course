@@ -3,18 +3,19 @@ import axios from 'axios';
 import React from 'react';
 import { User } from "./UserInterface";
 
-interface CurrentUserLoaderProps {
-    children?: React.ReactElement;
+interface UserLoaderProps {
+    children?: React.ReactNode;
+    userId: number;
   }
 
-export const CurrentUserLoader: React.FC<CurrentUserLoaderProps> = ({ children }) => {
+export const UserLoader: React.FC<UserLoaderProps> = ({ userId, children }) => {
     const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         (async () => {
             
             try {
-                const response = await axios.get<User>('/current-user');
+                const response = await axios.get(`/users/${userId}`);
                 setUser(response.data);
             } catch (error) {
                 console.error("Error fetching current user:", error);

@@ -5,7 +5,7 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "outDir": "./dist"
+    "outDir": "./dist",
     // other options remain same
   }
 }

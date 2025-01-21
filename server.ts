@@ -17,6 +17,7 @@ let currentUser: User = {
 
 app.get('/current-user', (req, res) => {
 	res.json(currentUser);
+	console.log(currentUser);
 });
 
 app.get('/users/:id', (req, res) => {

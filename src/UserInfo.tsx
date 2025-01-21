@@ -1,19 +1,22 @@
 import { User } from './UserInterface';
 
-export const UserInfo = ({ user }: { user: User }) => {
-    const { name, age, hairColor, hobbies } = user;
-    
-    return (
+interface UserInfoProps {
+    user?: User;
+}
+
+export const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
+
+    return user ? (
         <>
-            <h3>Name: {name}</h3>
-            <p>Age: {age} years</p>
-            <p>Hair Color: {hairColor} years</p>
+            <h3>Name: {user.name}</h3>
+            <p>Age: {user.age} years</p>
+            <p>Hair Color: {user.hairColor} years</p>
             <h3>Hobbies:</h3>
             <ul>
-                {hobbies.map(hobby => <li key={hobby}>{hobby}</li>)}
+                {user.hobbies.map(hobby => <li key={hobby}>{hobby}</li>)}
             </ul>
         </>
-    );
+    ) : <p>Loading...</p>;
 }
 
 export default UserInfo

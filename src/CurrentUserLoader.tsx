@@ -1,25 +1,38 @@
-import { useEffect, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import axios from 'axios';
 import React from 'react';
 import { User } from "./UserInterface";
 
-export const CurrentUserLoader = ({ children }) => {
-    const [user, setUser] = useState(null);
+interface CurrentUserLoaderProps {
+    children?: React.ReactElement;
+  }
+
+export const CurrentUserLoader: React.FC<CurrentUserLoaderProps> = ({ children }) => {
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         (async () => {
-            const response =  await axios.get('/current-user');
-            setUser(response.data);
+            
+            try {
+                const response = await axios.get<User>('/current-user');
+                setUser(response.data);
+            } catch (error) {
+                console.error("Error fetching current user:", error);
+                setUser(null); 
+            }
         })();
     }, []);
 
     return (
         <>
-            {React.Children.map(children, child => {
-                if (React.isValidElement(child)) {
+            {React.Children.map(children, (child) => {
+                /*
+                    <{ user: User | null }>: Child element is expected to accept a user prop of type User | null
+                */
+                if (React.isValidElement<{ user: User | null }>(child)) {
                     return React.cloneElement(child, { user });
                 }
             })}
         </>
-    )
+    );
 }

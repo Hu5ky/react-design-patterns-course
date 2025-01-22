@@ -18,7 +18,7 @@ export const UserLoader: React.FC<UserLoaderProps> = ({ userId, children }) => {
                 const response = await axios.get(`/users/${userId}`);
                 setUser(response.data);
             } catch (error) {
-                console.error("Error fetching current user:", error);
+                console.error("Error fetching user:", error);
                 setUser(null); 
             }
         })();

@@ -1,12 +1,16 @@
-import { UserLoader } from "./UserLoader";
 import { UserInfo } from "./UserInfo";
+import { ResourceLoader } from "./ResourceLoader";
+import ProductInfo from "./ProductInfo";
 
 function App() {
   return (
     <>
-      <UserLoader userId={3}>
+      <ResourceLoader resourceUrl="/users/102" resourceName="user">
         <UserInfo />
-      </UserLoader>
+      </ResourceLoader>
+      <ResourceLoader resourceUrl="/products/101" resourceName="product">
+        <ProductInfo />
+      </ResourceLoader>
     </>
   )
 }

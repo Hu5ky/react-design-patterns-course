@@ -1,17 +1,20 @@
 import { Product } from './ProductInterface';
 
-export const ProductInfo = ( {product} : {product : Product} ) => {
-    const { name, price, description, rating } = product;
+interface ProductInfoProps {
+    product?: Product;
+}
 
-    return (
+export const ProductInfo: React.FC<ProductInfoProps> = ({product}) => {
+
+    return product ? (
         <>
-            <h3>{name}</h3>
-            <p>{price}</p>
+            <h3>{product.name}</h3>
+            <p>{product.price}</p>
             <h3>Description</h3>
-            <p>{description}</p>
-            <p>Average Rating: {rating}</p>
+            <p>{product.description}</p>
+            <p>Average Rating: {product.rating}</p>
         </>
-    );
+    ) : <p>Loading...</p>;
 }
 
 export default ProductInfo

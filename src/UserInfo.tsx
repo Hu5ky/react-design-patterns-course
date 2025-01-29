@@ -1,22 +1,22 @@
 import { User } from './UserInterface';
+import './cardStyle.css';  // Import your CSS file
 
 interface UserInfoProps {
     user?: User;
 }
 
 export const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
-
     return user ? (
-        <>
-            <h3>Name: {user.name}</h3>
+        <div className="info-card">
+            <p>Name: {user.name}</p>
             <p>Age: {user.age} years</p>
             <p>Hair Color: {user.hairColor}</p>
-            <h3>Hobbies:</h3>
+            <p>Hobbies</p>
             <ul>
                 {user.hobbies.map(hobby => <li key={hobby}>{hobby}</li>)}
             </ul>
-        </>
+        </div>
     ) : <p>Loading...</p>;
 }
 
-export default UserInfo
+export default UserInfo;

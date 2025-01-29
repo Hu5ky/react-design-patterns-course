@@ -3,6 +3,7 @@ import { ResourceLoader } from "./ResourceLoader";
 import ProductInfo from "./ProductInfo";
 import { User } from "./UserInterface";
 import { DataSource } from "./DataSource";
+import { DataSourceTwo } from "./DataSourceTwo";
 import { Product } from "./ProductInterface";
 import axios from "axios";
 
@@ -16,24 +17,31 @@ import axios from "axios";
       }; 
   };
 
-  const getProductId: () => Promise<Product> = async () => {
-    const response = await axios.get(`/products/100}`);
+  const getProductById: (urlToTarget: string) => Promise<Product> = async (urlToTarget: string) => {
+    const response = await axios.get(urlToTarget);
     return(response.data);
   };
+
+  const getProduct = () => getProductById('/products/101');
+
+  const getUserById: (urlToTarget: string) => Promise<User> = async (urlToTarget: string) => {
+    const response = await axios.get(urlToTarget);
+    return(response.data);
+  };
+
+  const getUser = () => getUserById('/users/101');
 
   function App() {
     return (
       <>
-        {/* <ResourceLoader resourceUrl="/users/102" resourceName="user">
-          <UserInfo />
-        </ResourceLoader>
-        <ResourceLoader resourceUrl="/products/101" resourceName="product">
-          <ProductInfo />
-        </ResourceLoader> */}
-        <DataSource getDataFunc={fetchProductMock} resourceName={"product"}>
+        
+        {/* TypeSafety enforced DataSource*/}
+        <DataSource<Product> getDataFunc={getProduct} resourceName={"product"}>
           <ProductInfo />
         </DataSource>
-        <DataSource getDataFunc={getProductId} resourceName={"product"}>
+
+        {/* Throws a TS error */}
+        <DataSource<Product> getDataFunc={getUser} resourceName={"product"}>
           <ProductInfo />
         </DataSource>
       </>

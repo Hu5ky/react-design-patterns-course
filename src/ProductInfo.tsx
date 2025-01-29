@@ -1,20 +1,20 @@
 import { Product } from './ProductInterface';
+import './cardStyle.css';  // Import the CSS file
 
 interface ProductInfoProps {
     product?: Product;
 }
 
-export const ProductInfo: React.FC<ProductInfoProps> = ({product}) => {
+export const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
 
     return product ? (
-        <>
-            <h3>{product.name}</h3>
-            <p>{product.price}</p>
-            <h3>Description</h3>
-            <p>{product.description}</p>
+        <div className="info-card">
+            <p>Name: {product.name}</p>
+            <p>Price: {product.price}</p>
+            <p>Description: {product.description}</p>
             <p>Average Rating: {product.rating}</p>
-        </>
+        </div>
     ) : <p>Loading...</p>;
 }
 
-export default ProductInfo
+export default ProductInfo;

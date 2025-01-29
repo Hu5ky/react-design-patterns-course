@@ -1,10 +1,10 @@
-import { UserInfo } from "./UserInfo";
+import { UserInfo } from "./components/UserInfo";
 import { ResourceLoader } from "./ResourceLoader";
-import ProductInfo from "./ProductInfo";
-import { User } from "./UserInterface";
-import { DataSource } from "./DataSource";
+import ProductInfo from "./components/ProductInfo";
+import { User } from "./data/UserInterface";
+import { DataSource } from "./data/DataSource";
 import { DataSourceTwo } from "./DataSourceTwo";
-import { Product } from "./ProductInterface";
+import { Product } from "./data/ProductInterface";
 import axios from "axios";
 
   const fetchProductMock: () => Promise<Product> = async () => {

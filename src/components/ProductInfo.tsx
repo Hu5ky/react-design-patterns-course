@@ -1,4 +1,4 @@
-import { Product } from './ProductInterface';
+import { Product } from '../data/ProductInterface';
 import './cardStyle.css';  // Import the CSS file
 
 interface ProductInfoProps {

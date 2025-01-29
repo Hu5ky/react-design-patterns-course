@@ -1,5 +1,5 @@
-import { Product } from './src/ProductInterface';
-import { User } from './src/UserInterface';
+import { Product } from './src/data/ProductInterface';
+import { User } from './src/data/UserInterface';
 import { Request, Response } from 'express';
 
 const express = require('express');

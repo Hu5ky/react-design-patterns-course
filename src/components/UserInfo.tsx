@@ -1,4 +1,4 @@
-import { User } from './UserInterface';
+import { User } from '../data/UserInterface';
 import './cardStyle.css';  // Import your CSS file
 
 interface UserInfoProps {

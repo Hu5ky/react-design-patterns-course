@@ -19,24 +19,22 @@ const ModalBody = styled.div`
 	width: 50%;
 `;
 
-interface ModalProps {
-    children?: React.ReactNode;
+interface ControlledModalProps {
+    shouldShow: boolean;
+	onRequestClose: () => void;
+	children?: React.ReactNode;
 }
 
-export const Modal: React.FC<ModalProps> = ({children}) => {
-	const [shouldShow, setShouldShow] = useState(false);
+export const ControlledModal: React.FC<ControlledModalProps> = ({shouldShow, onRequestClose, children}) => {
 
-	return (
+	return shouldShow ? (
 		<>
-		<button onClick={() => setShouldShow(true)}>Show Modal</button>
-		{shouldShow && (
-			<ModalBackground onClick={() => setShouldShow(false)}>
+			<ModalBackground onClick={onRequestClose}>
 				<ModalBody onClick={e => e.stopPropagation()}>
-					<button onClick={() => setShouldShow(false)}>Hide Modal</button>
+					<button onClick={onRequestClose}>Hide Modal</button>
 					{children}
 				</ModalBody>
 			</ModalBackground>
-		)}
 		</>
-	);
+	) : null;
 }

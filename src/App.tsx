@@ -31,6 +31,13 @@ import axios from "axios";
 
   const getUser = () => getUserById('/users/101');
 
+  const getLocalStorageData = (key: string) => () => {
+    console.log(localStorage.getItem('message'));
+    return localStorage.getItem(key) ?? "";
+  }
+
+  const Text = ({ message }: { message?: string }) => <h1>{message}</h1>;
+
   function App() {
     return (
       <>
@@ -43,6 +50,10 @@ import axios from "axios";
         {/* Throws a TS error */}
         <DataSource<Product> getDataFunc={getUser} resourceName={"product"}>
           <ProductInfo />
+        </DataSource>
+        
+        <DataSource<string> getDataFunc={getLocalStorageData('message')} resourceName={"message"}>
+          <Text />
         </DataSource>
       </>
     )

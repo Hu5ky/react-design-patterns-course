@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 interface DataSourceProps<T> {
     children: React.ReactElement;
-    getDataFunc: () => Promise<T>;
+    getDataFunc: () => T | Promise<T>; // Accepts both async and sync functions
     resourceName: string;
 }
 
 export const DataSource = <T,>({
-    getDataFunc = async () => ({} as T),
+    getDataFunc,
     resourceName,
     children,
 }: DataSourceProps<T>) => {
@@ -16,7 +16,7 @@ export const DataSource = <T,>({
     useEffect(() => {
         (async () => {
             try {
-                const data = await getDataFunc();
+                const data = await Promise.resolve(getDataFunc()); // Handles both sync & async cases
                 setState(data);
             } catch (error) {
                 console.error("Error fetching current resource:", error);
@@ -27,9 +27,9 @@ export const DataSource = <T,>({
 
     return (
         <>
-            {React.Children.map(children, (child) => {
-                return React.cloneElement(child, { [resourceName]: state });
-            })}
+            {React.Children.map(children, (child) =>
+                React.cloneElement(child, { [resourceName]: state })
+            )}
         </>
     );
 };

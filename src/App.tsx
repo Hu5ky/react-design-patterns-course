@@ -1,12 +1,10 @@
-import { ControlledForm } from "./ControlledForm"
-import { UncontrolledForm } from "./UncontrolledForm"
+import { Modal } from "./modal"
 
 function App() {
     return (
       <>
         <h1>Your code goes here</h1>
-        {/* <UncontrolledForm /> */}
-        <ControlledForm />
+        <Modal />
       </>
     )
   }

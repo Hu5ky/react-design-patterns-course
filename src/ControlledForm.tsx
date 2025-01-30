@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export const ControlledForm = () => {
     const [nameInputError, setNameInputError] = useState<string>("");

@@ -8,7 +8,9 @@ interface UncontrolledOnboardingFlowProps {
 export const UncontrolledOnboardingFlow: React.FC<UncontrolledOnboardingFlowProps> = ({ onFinish, children}) => {
     const [onboardingData, setOnboardingData] = useState({});
     const [currentIndex, setCurrentIndex] = useState<number>(0);
-
+    
+    const totalSteps: number = React.Children.toArray(children).length;
+    
     const goToNext = () => {
         if (currentIndex + 1 < React.Children.toArray(children).length) {
             setCurrentIndex(currentIndex + 1);
@@ -24,8 +26,13 @@ export const UncontrolledOnboardingFlow: React.FC<UncontrolledOnboardingFlowProp
     const currentChild = React.Children.toArray(children)[currentIndex];
 
     if (React.isValidElement(currentChild)) {
-        return React.cloneElement(currentChild, { goToNext, goToPrevious });
-    }
+        return React.cloneElement(currentChild, {
+          stepNumber: currentIndex + 1,
+          totalSteps,
+          goToNext,
+          goToPrevious,
+        });
+      }
     
     return null;
 }

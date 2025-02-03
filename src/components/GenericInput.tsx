@@ -4,7 +4,7 @@ interface GenericInputProps {
     inputName: string;
     type: string;
     placeholder?: string;
-    sendData?: (data: React.ReactNode) => void;
+    sendData?: (data: any) => void;
 }
 
 export const GenericInput: React.FC<GenericInputProps> = ({

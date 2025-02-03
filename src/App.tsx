@@ -1,5 +1,5 @@
-import { GenericInput } from "./components/GenericForm";
-import { MockStepComponent } from "./components/MockStepComponent";
+import { GenericInput } from "./components/GenericInput";
+import { MockStep } from "./components/MockStepComponent";
 import { UncontrolledOnboardingFlow } from "./components/UncontrolledOnboardingFlow";
 
 function App() {
@@ -8,21 +8,23 @@ function App() {
       <>
         <h1>Messing around with Onboarding Flows</h1>
         
-        <UncontrolledOnboardingFlow>
-          <MockStepComponent>
+        <UncontrolledOnboardingFlow onFinish={(data: any) => {
+          console.log('Onboarding Complete:', data);
+        }}>
+          <MockStep>
             <GenericInput 
               inputName="StepOneInput"
               placeholder="Step One Data"
               type="text"
             />
-          </MockStepComponent>
-          <MockStepComponent>
+          </MockStep>
+          <MockStep>
           <GenericInput 
               inputName="StepTwoInput"
               placeholder="Step Two Data"
               type="text"
             />
-          </MockStepComponent>
+          </MockStep>
         </UncontrolledOnboardingFlow>
       </>
     )

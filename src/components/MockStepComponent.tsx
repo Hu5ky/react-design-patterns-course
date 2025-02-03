@@ -1,39 +1,25 @@
 import React, { useState, useEffect } from "react"
 
 interface MockStepComponentProps {
-    stepNumber?: number;
-    totalSteps?: number;
-    goToNext?: () => void;
+    stepNumber?: number; // Current step of onboarding process
+    totalSteps?: number; // Total number of steps in the onboarding process
+    goToNext?: (data: any) => any; // Func ref
     goToPrevious?: () => void;
     children?: React.ReactNode;
 }
 
-export const MockStepComponent: React.FC<MockStepComponentProps> = ({ 
+/*
+    MockStep: Container component to render children components and to aggregate the data 
+*/
+export const MockStep: React.FC<MockStepComponentProps> = ({ 
     stepNumber: currentStep = 1,
     totalSteps = 1, 
     goToNext, 
     goToPrevious,
     children
 }) => {
-    // const [isNextDisabled, setIsNextDisabled] = useState<boolean>(false);
-    // const [isPreviousDisabled, setIsPreviousDisabled] = useState<boolean>(false);
-    const [stepData, setStepData] = useState<any>(null);
+    const [stepData, setStepData] = useState<{}>(); //Default stepData is null
 
-    /*
-        Removed button logic from useEffect hook because the button state can be derived purely from props.
-    */
-
-    // useEffect(() => {
-    //     const updateButtonStates = () => {
-    //         setIsPreviousDisabled(currentStep === 1);
-    //         setIsNextDisabled(currentStep === totalSteps);
-    //     };
-    //     updateButtonStates();
-    // }, [currentStep, totalSteps]);
-
-    /*
-        Would probably be better to set the buttons and button logic in UncontrolledOnboardingFlow component
-    */
     return (
         <>
             <h1>Step {currentStep}</h1>
@@ -45,15 +31,6 @@ export const MockStepComponent: React.FC<MockStepComponentProps> = ({
             )}
 
             <p>Step Data: {JSON.stringify(stepData)}</p>
-            
-            {/* <button 
-                onClick={goToPrevious} 
-                disabled={isPreviousDisabled}
-            >Previous</button>
-            <button 
-                onClick={goToNext} 
-                disabled={isNextDisabled}
-            >Next</button> */}
 
             <button 
                 onClick={goToPrevious} 
@@ -61,8 +38,8 @@ export const MockStepComponent: React.FC<MockStepComponentProps> = ({
             >Previous</button>
             
             <button 
-                onClick={goToNext} 
-                disabled={currentStep === totalSteps}
+                onClick={() => goToNext?.(stepData)}
+                // disabled={currentStep === totalSteps}
             >Next</button>
         </>
     );

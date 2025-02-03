@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 
 interface UncontrolledOnboardingFlowProps {
-    onFinish?: any;
+    onFinish?: (data: any) => void;
     children?: React.ReactNode;
 }
 
@@ -11,14 +11,25 @@ export const UncontrolledOnboardingFlow: React.FC<UncontrolledOnboardingFlowProp
     
     const totalSteps: number = React.Children.toArray(children).length;
     
-    useEffect(() => {
-        console.log('Data set: ',onboardingData);
-    }, [onboardingData]);
+    const goToNext = (stepData: any) => {
+        
+        console.log('Go to next, data: ', stepData);
+        
+        const nextIndex: number = currentIndex + 1;
+        const updatedData = {
+            ...onboardingData,
+            [`step_${currentIndex + 1}`]: stepData
+        };
 
-    const goToNext = () => {
+        console.log(updatedData);
+
         if (currentIndex + 1 < React.Children.toArray(children).length) {
             setCurrentIndex(currentIndex + 1);
+        } else {
+            onFinish?.(updatedData)
         }
+
+        setOnboardingData(updatedData);
     }
 
     const goToPrevious = () => {

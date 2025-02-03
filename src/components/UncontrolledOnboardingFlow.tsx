@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 interface UncontrolledOnboardingFlowProps {
     onFinish?: any;
@@ -11,6 +11,10 @@ export const UncontrolledOnboardingFlow: React.FC<UncontrolledOnboardingFlowProp
     
     const totalSteps: number = React.Children.toArray(children).length;
     
+    useEffect(() => {
+        console.log('Data set: ',onboardingData);
+    }, [onboardingData]);
+
     const goToNext = () => {
         if (currentIndex + 1 < React.Children.toArray(children).length) {
             setCurrentIndex(currentIndex + 1);
@@ -31,6 +35,7 @@ export const UncontrolledOnboardingFlow: React.FC<UncontrolledOnboardingFlowProp
           totalSteps,
           goToNext,
           goToPrevious,
+          setOnboardingData
         });
       }
     

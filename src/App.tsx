@@ -1,3 +1,4 @@
+import { GenericInput } from "./components/GenericForm";
 import { MockStepComponent } from "./components/MockStepComponent";
 import { UncontrolledOnboardingFlow } from "./components/UncontrolledOnboardingFlow";
 
@@ -8,9 +9,15 @@ function App() {
         <h1>Your code goes here</h1>
         
         <UncontrolledOnboardingFlow>
-          <MockStepComponent />
-          <MockStepComponent />
-          <MockStepComponent />
+          <MockStepComponent>
+            <GenericInput 
+              inputName="StepOneInput"
+              placeholder="Step One Data"
+              type="text"
+            />
+          </MockStepComponent>
+          <MockStepComponent>
+          </MockStepComponent>
         </UncontrolledOnboardingFlow>
       </>
     )

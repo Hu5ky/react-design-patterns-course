@@ -6,7 +6,7 @@ function App() {
 
   return (
       <>
-        <h1>Your code goes here</h1>
+        <h1>Messing around with Onboarding Flows</h1>
         
         <UncontrolledOnboardingFlow>
           <MockStepComponent>
@@ -17,6 +17,11 @@ function App() {
             />
           </MockStepComponent>
           <MockStepComponent>
+          <GenericInput 
+              inputName="StepTwoInput"
+              placeholder="Step Two Data"
+              type="text"
+            />
           </MockStepComponent>
         </UncontrolledOnboardingFlow>
       </>

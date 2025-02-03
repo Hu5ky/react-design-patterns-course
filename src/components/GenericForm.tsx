@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 
 interface GenericInputProps {
     inputName: string;
@@ -15,18 +15,12 @@ export const GenericInput: React.FC<GenericInputProps> = ({
 }) => {
     const [inputData, setInputData]= useState<string>("");
 
-    useEffect(() => {
-        console.log(inputData);
-    }, [inputData])
-
     const returnInputData = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault(); // Prevent form submission
         if (sendData) {
             sendData(inputData);
-            console.log('data sent');
         }
     };
-
 
     return(
         <>

@@ -34,8 +34,7 @@ export const UncontrolledOnboardingFlow: React.FC<UncontrolledOnboardingFlowProp
           stepNumber: currentIndex + 1,
           totalSteps,
           goToNext,
-          goToPrevious,
-          setOnboardingData
+          goToPrevious
         });
       }
     

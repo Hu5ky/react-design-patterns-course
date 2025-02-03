@@ -15,22 +15,21 @@ export const MockStepComponent: React.FC<MockStepComponentProps> = ({
     goToPrevious,
     children
 }) => {
-    const [isNextDisabled, setIsNextDisabled] = useState<boolean>(false);
-    const [isPreviousDisabled, setIsPreviousDisabled] = useState<boolean>(false);
+    // const [isNextDisabled, setIsNextDisabled] = useState<boolean>(false);
+    // const [isPreviousDisabled, setIsPreviousDisabled] = useState<boolean>(false);
     const [stepData, setStepData] = useState<any>(null);
 
-    const getChildData = ({ data } : {data: React.ReactNode}) => {
-        setStepData(data);
-        console.log("Parent receiving: ", data); 
-    }
+    /*
+        Removed button logic from useEffect hook because the button state can be derived purely from props.
+    */
 
-    useEffect(() => {
-        const updateButtonStates = () => {
-            setIsPreviousDisabled(currentStep === 1);
-            setIsNextDisabled(currentStep === totalSteps);
-        };
-        updateButtonStates();
-    }, [currentStep, totalSteps]);
+    // useEffect(() => {
+    //     const updateButtonStates = () => {
+    //         setIsPreviousDisabled(currentStep === 1);
+    //         setIsNextDisabled(currentStep === totalSteps);
+    //     };
+    //     updateButtonStates();
+    // }, [currentStep, totalSteps]);
 
     /*
         Would probably be better to set the buttons and button logic in UncontrolledOnboardingFlow component
@@ -39,15 +38,31 @@ export const MockStepComponent: React.FC<MockStepComponentProps> = ({
         <>
             <h1>Step {currentStep}</h1>
             
-            {children}
-            <p>Data:{stepData}</p>
-            <button 
+            {React.Children.map(children, (child) => 
+                React.isValidElement(child) 
+                    ? React.cloneElement(child, { sendData: setStepData }) 
+                    : child
+            )}
+
+            <p>Step Data: {JSON.stringify(stepData)}</p>
+            
+            {/* <button 
                 onClick={goToPrevious} 
                 disabled={isPreviousDisabled}
             >Previous</button>
             <button 
                 onClick={goToNext} 
                 disabled={isNextDisabled}
+            >Next</button> */}
+
+            <button 
+                onClick={goToPrevious} 
+                disabled={currentStep === 1}
+            >Previous</button>
+            
+            <button 
+                onClick={goToNext} 
+                disabled={currentStep === totalSteps}
             >Next</button>
         </>
     );

@@ -1,16 +1,29 @@
+import { ControlledOnboardingFlow } from "./features/onboarding/ControlledOnboardingFlow";
 import { GenericInput } from "./features/onboarding/GenericInput";
 import { MockStep } from "./features/onboarding/MockStep";
-import { UncontrolledOnboardingFlow } from "./features/onboarding/UncontrolledOnboardingFlow";
+import { useState } from "react";
 
 function App() {
+  const [onboardingData, setOnboardingData] = useState({});
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  
+  const onNext = (stepData: any) => {
+      setOnboardingData({...onboardingData, ...stepData});
+      setCurrentIndex(currentIndex + 1);
+    }
+
+    const onPrevious = () => {
+      setCurrentIndex(currentIndex - 1);
+    }
 
   return (
       <>
         <h1>Messing around with Onboarding Flows</h1>
-        
-        <UncontrolledOnboardingFlow onFinish={(data: any) => {
-          console.log('Onboarding Complete:', data);
-        }}>
+        <ControlledOnboardingFlow 
+          currentIndex={currentIndex}
+          onNext={onNext}
+          onPrevious={onPrevious}
+        >
           <MockStep>
             <GenericInput 
               inputName="StepOneInput"
@@ -18,21 +31,7 @@ function App() {
               type="text"
             />
           </MockStep>
-          <MockStep>
-            <GenericInput 
-                inputName="StepTwoInput"
-                placeholder="Step Two Data"
-                type="text"
-            />
-          </MockStep>
-          <MockStep>
-            <GenericInput 
-                inputName="StepThreeInput"
-                placeholder="Step Three Data"
-                type="text"
-            />
-          </MockStep>
-        </UncontrolledOnboardingFlow>
+        </ControlledOnboardingFlow>
       </>
     )
   }

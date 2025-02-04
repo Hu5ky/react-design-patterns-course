@@ -1,6 +1,6 @@
-import { GenericInput } from "./components/GenericInput";
-import { MockStep } from "./components/MockStepComponent";
-import { UncontrolledOnboardingFlow } from "./components/UncontrolledOnboardingFlow";
+import { GenericInput } from "./features/onboarding/GenericInput";
+import { MockStep } from "./features/onboarding/MockStep";
+import { UncontrolledOnboardingFlow } from "./features/onboarding/UncontrolledOnboardingFlow";
 
 function App() {
 
@@ -19,10 +19,17 @@ function App() {
             />
           </MockStep>
           <MockStep>
-          <GenericInput 
-              inputName="StepTwoInput"
-              placeholder="Step Two Data"
-              type="text"
+            <GenericInput 
+                inputName="StepTwoInput"
+                placeholder="Step Two Data"
+                type="text"
+            />
+          </MockStep>
+          <MockStep>
+            <GenericInput 
+                inputName="StepThreeInput"
+                placeholder="Step Three Data"
+                type="text"
             />
           </MockStep>
         </UncontrolledOnboardingFlow>

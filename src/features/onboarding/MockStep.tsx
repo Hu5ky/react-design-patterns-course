@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 
-interface MockStepComponentProps {
+export interface MockStepComponentProps {
     stepNumber?: number; // Current step of onboarding process
     totalSteps?: number; // Total number of steps in the onboarding process
-    goToNext?: (data: any) => any; // Func ref
+    goToNext?: (data: any) => any; 
     goToPrevious?: () => void;
     children?: React.ReactNode;
 }
@@ -20,13 +20,15 @@ export const MockStep: React.FC<MockStepComponentProps> = ({
 }) => {
     const [stepData, setStepData] = useState<{}>(); //Default stepData is null
 
+
+
     return (
         <>
             <h1>Step {currentStep}</h1>
             
             {React.Children.map(children, (child) => 
-                React.isValidElement(child) 
-                    ? React.cloneElement(child, { sendData: setStepData }) 
+                React.isValidElement<any>(child) 
+                    ? React.cloneElement(child, { returnDataToParentFunc: setStepData }) 
                     : child
             )}
 
@@ -39,8 +41,9 @@ export const MockStep: React.FC<MockStepComponentProps> = ({
             
             <button 
                 onClick={() => goToNext?.(stepData)}
-                // disabled={currentStep === totalSteps}
-            >Next</button>
+            >
+                {(currentStep === totalSteps) ? 'Submit' : 'Next'}
+            </button>
         </>
     );
 }

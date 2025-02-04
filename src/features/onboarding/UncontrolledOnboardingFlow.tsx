@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react";
 
 interface UncontrolledOnboardingFlowProps {
-    onFinish?: (data: any) => void;
+    onFinish: (data: any) => void;
     children?: React.ReactNode;
 }
 
@@ -11,27 +11,24 @@ export const UncontrolledOnboardingFlow: React.FC<UncontrolledOnboardingFlowProp
     
     const totalSteps: number = React.Children.toArray(children).length;
     
+    //Go to next onboarding component and save current component data
     const goToNext = (stepData: any) => {
-        
-        console.log('Go to next, data: ', stepData);
-        
         const nextIndex: number = currentIndex + 1;
         const updatedData = {
             ...onboardingData,
             [`step_${currentIndex + 1}`]: stepData
         };
 
-        console.log(updatedData);
-
-        if (currentIndex + 1 < React.Children.toArray(children).length) {
+        if (nextIndex < React.Children.toArray(children).length) {
             setCurrentIndex(currentIndex + 1);
         } else {
-            onFinish?.(updatedData)
+            onFinish?.(updatedData);
         }
-
+        
         setOnboardingData(updatedData);
     }
 
+    //Go to previous onboarding component
     const goToPrevious = () => {
         if (currentIndex > 0) {
             setCurrentIndex(currentIndex - 1);
@@ -40,7 +37,8 @@ export const UncontrolledOnboardingFlow: React.FC<UncontrolledOnboardingFlowProp
 
     const currentChild = React.Children.toArray(children)[currentIndex];
 
-    if (React.isValidElement(currentChild)) {
+    //Re-render child elements with refs to next & previous steps and the current onboarding flow progress
+    if (React.isValidElement<any>(currentChild)) {
         return React.cloneElement(currentChild, {
           stepNumber: currentIndex + 1,
           totalSteps,

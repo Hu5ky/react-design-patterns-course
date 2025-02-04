@@ -4,21 +4,24 @@ interface GenericInputProps {
     inputName: string;
     type: string;
     placeholder?: string;
-    sendData?: (data: any) => void;
+    returnDataToParentFunc?: (data: any) => void;
 }
 
+/*
+    A wrapper component for a standard HTML input. Allows to dynamically create an input and return data via func call
+*/
 export const GenericInput: React.FC<GenericInputProps> = ({
     inputName,
     type,
     placeholder = "",
-    sendData,
+    returnDataToParentFunc,
 }) => {
     const [inputData, setInputData]= useState<string>("");
 
-    const returnInputData = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const submitData = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault(); // Prevent form submission
-        if (sendData) {
-            sendData(inputData);
+        if (returnDataToParentFunc) {
+            returnDataToParentFunc(inputData);
         }
     };
 
@@ -32,7 +35,7 @@ export const GenericInput: React.FC<GenericInputProps> = ({
                 value={inputData}
                 onChange={e => setInputData(e.target.value)}
             />
-            <button onClick={returnInputData}>Submit</button>
+            <button onClick={submitData}>Submit</button>
         </form>
         </>
     );

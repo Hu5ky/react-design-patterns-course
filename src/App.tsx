@@ -1,14 +1,14 @@
-import { printProps } from "./printProps";
 import { UserInfo } from "./components/UserInfo";
+import { withUser } from "./components/HOCs/withUser";
 
 function App() {
   
-  const UserInfoWrapped = printProps(UserInfo);
-  
+  const UserInfoWithData = withUser(UserInfo, '102');
+
   return (
 		<>
       <h1>Your code goes here</h1>
-      <UserInfoWrapped a={1} b="Hello" c={{name: 'Shaun'}}/>
+      <UserInfoWithData />
     </>
 	);
 }

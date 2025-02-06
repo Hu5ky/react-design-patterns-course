@@ -30,7 +30,7 @@ export const users: User[] = [{
 }];
 
 let currentUser: User = {
-	id: 1,
+	id: 103,
 	name: 'John Doe',
 	age: 54,
 	hairColor: 'brown',
@@ -82,6 +82,7 @@ app.get('/users/:id', (req: Request<GetUserParams>, res: Response) => {
 // app.get('/users', (req, res) => {
 // 	res.json(users);
 // });
+
 interface GetProductParams {
 	id: string;
 };

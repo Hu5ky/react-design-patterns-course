@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 
-export const users: User[] = [{
+export let users: User[] = [{
 	id: 100,
 	name: 'John Doe',
 	age: 54,
@@ -71,13 +71,19 @@ app.get('/users/:id', (req: Request<GetUserParams>, res: Response) => {
 	res.json(users.find(user => user.id === id));
 });
 
-// app.post('/users/:id', (req, res) => {
-// 	const { id } = req.params;
-// 	const { user: updatedUser } = req.body;
+interface PostUserParams {
+	id: string;
+	user: User;
+}
 
-// 	users = users.map(user => user.id === id ? updatedUser : user)
-// 	res.json(users.find(user => user.id === id));
-// });
+app.post('/users/:id', (req: Request<PostUserParams>, res: Response) => {
+	
+	const id: number = parseInt(req.params.id, 10);
+	const updatedUser: User = req.body.user;
+
+	users = users.map(user => user.id === id ? updatedUser : user);
+	res.json(users.find(user => user.id === id));
+});
 
 // app.get('/users', (req, res) => {
 // 	res.json(users);

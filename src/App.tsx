@@ -1,14 +1,13 @@
 import { UserInfo } from "./components/UserInfo";
 import { withUser } from "./components/HOCs/withUser";
+import { UserInfoForm } from "./components/UserInfoForm";
 
 function App() {
   
-  const UserInfoWithData = withUser(UserInfo, '102');
-
   return (
 		<>
       <h1>Your code goes here</h1>
-      <UserInfoWithData />
+      <UserInfoForm />
     </>
 	);
 }

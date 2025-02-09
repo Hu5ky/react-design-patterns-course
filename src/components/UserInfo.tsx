@@ -1,14 +1,13 @@
 import './cardStyle.css';  
-import { User } from '../data/UserInterface';
-import { useUser } from './hooks/useUser';
+import { useResource } from './hooks/useResource';
 
 interface UserInfoProps {
-    user?: User;
-    userId?: string;
+    userId: string;
 }
 
-export const UserInfo: React.FC<UserInfoProps> = ({ userId = "" }) => {
-    const user = useUser(userId);
+export const UserInfo: React.FC<UserInfoProps> = ({ userId }) => {
+    const user = useResource(`/users/${userId}`);
+    
     return user ? (
         <div className="info-card">
             <p>Name: {user.name}</p>

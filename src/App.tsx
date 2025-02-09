@@ -1,14 +1,14 @@
 import { UserInfo } from "./components/UserInfo";
-import { withUser } from "./components/HOCs/withUser";
-import { UserInfoForm } from "./components/UserInfoForm";
+import { ProductInfo } from "./components/ProductInfo";
 
 function App() {
   
   return (
 		<>
-      <h1>Your code goes here</h1>
+      <h1>Your code goes here?!</h1>
       {/* <UserInfoForm /> */}
       <UserInfo userId="102"/>
+      <ProductInfo productId="100"/>
     </>
 	);
 }

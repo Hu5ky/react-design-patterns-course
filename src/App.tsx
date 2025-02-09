@@ -8,7 +8,7 @@ function App() {
       <h1>Your code goes here?!</h1>
       {/* <UserInfoForm /> */}
       <UserInfo userId="102"/>
-      <ProductInfo productId="100"/>
+      {/* <ProductInfo productId="100"/> */}
     </>
 	);
 }

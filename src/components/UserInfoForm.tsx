@@ -2,10 +2,10 @@ import { User } from "../data/UserInterface";
 import { withEditableResource } from "./HOCs/withEditableResource";
 
 interface UserInfoFormProps {
-    user?: User | null;
-    onChangeUser?: (changes: Partial<User>) => void;
-    onSaveUser?: () => void;
-    onResetUser?: () => void;
+    user: User | null;
+    onChangeUser: (changes: Partial<User>) => void;
+    onSaveUser: () => void;
+    onResetUser: () => void;
 }
 
 export const UserInfoForm = withEditableResource<UserInfoFormProps>(({user, onChangeUser, onSaveUser, onResetUser}) => {

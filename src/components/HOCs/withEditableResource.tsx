@@ -27,7 +27,7 @@ export const withEditableResource = <P extends object>(
             /*
                 Functional update of setUser, it uses the previous stae 
             */
-            setData(prevData => (prevData ? { ...prevData, ...changes } : prevData));
+            setData((prevData: any) => (prevData ? { ...prevData, ...changes } : prevData));
         }
 
         const onSave = async () => {

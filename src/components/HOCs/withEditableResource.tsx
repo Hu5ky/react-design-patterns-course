@@ -1,46 +1,55 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
-import { User } from "../../data/UserInterface"
 
-export const withEditableUser = <P extends object>(
+const capitalize = (str: string): string => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+export const withEditableResource = <P extends object>(
     Component: React.ComponentType<P>,
-    userId: string,
+    resourceName: string,
+    resourceURL: string,
 ) => {
     return (props: P) => {
-        const [originalData, setOriginalData] = useState<User | null>(null);
-        const [data, setData] = useState<User | null>(null);
+        const [originalData, setOriginalData] = useState<any | null>(null);
+        const [data, setData] = useState<any | null>(null);
 
         useEffect(() => {
             (async () => {
-                const response = await axios.get<User>(`/users/${userId}`);
+                console.log(resourceURL);
+                const response = await axios.get<any>(resourceURL);
                 setOriginalData(response.data);
                 setData(response.data);
             })(); // () After async func declaration is called IIFE (Immediately Invoked Function Expression)
         }, []);
         
-        const onChangeUser = (changes: Partial<User>) => {
+        const onChange = (changes: Partial<any>) => {
             /*
                 Functional update of setUser, it uses the previous stae 
             */
-            setData(prevUser => (prevUser ? { ...prevUser, ...changes } : prevUser));
+            setData(prevData => (prevData ? { ...prevData, ...changes } : prevData));
         }
 
-        const onSaveUser = async () => {
-            const response = await axios.post(`/users/${userId}`, { user: data });
+        const onSave = async () => {
+            const response = await axios.post(resourceURL, { [resourceName]: data });
             setOriginalData(response.data);
             setData(response.data);
         }
 
-        const onResetUser = () => {
+        const onReset = () => {
             setData(originalData);
+        }
+
+        const resourceProps = {
+            [resourceName]: data,
+            [`onChange${capitalize(resourceName)}`]: onChange,
+            [`onSave${capitalize(resourceName)}`]: onSave,
+            [`onReset${capitalize(resourceName)}`]: onReset,
         }
 
         return <Component 
             {...props} 
-            user={data}
-            onChangeUser={onChangeUser}
-            onSaveUser={onSaveUser}
-            onResetUser={onResetUser}
+            {...resourceProps}
         />
     }
 }

@@ -1,6 +1,5 @@
-import { withEditableUser } from "./HOCs/withEditableUser";
-import { withUser } from "./HOCs/withUser";
 import { User } from "../data/UserInterface";
+import { withEditableResource } from "./HOCs/withEditableResource";
 
 interface UserInfoFormProps {
     user?: User | null;
@@ -9,7 +8,7 @@ interface UserInfoFormProps {
     onResetUser?: () => void;
 }
 
-export const UserInfoForm = withEditableUser<UserInfoFormProps>(({user, onChangeUser, onSaveUser, onResetUser}) => {
+export const UserInfoForm = withEditableResource<UserInfoFormProps>(({user, onChangeUser, onSaveUser, onResetUser}) => {
     const { name, age, hairColor} = user || {};
     return user ? (
         <>
@@ -33,4 +32,4 @@ export const UserInfoForm = withEditableUser<UserInfoFormProps>(({user, onChange
             <button onClick={onSaveUser}>Save Changes</button>
         </>
     ) : <p>Loading...</p>
-}, '102');
+}, 'user', '/users/102');

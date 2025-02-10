@@ -1,5 +1,5 @@
 import { RecursiveComponent } from "./components/RecursiveComponent";
-import { DangerButton, BigSuccessButton } from "./components/composition";
+import { DangerButton2, BigSuccessButton2 } from "./components/partiallyApply";
 
 const nestedObject = {
 	a: 1,
@@ -27,8 +27,8 @@ function App() {
 	return (
 		<>
     <h1>Your code goes here</h1>
-    <DangerButton text="Absolutely don't click here"/>
-    <BigSuccessButton text="This one is safe"/>
+    <DangerButton2 text="Absolutely don't click here"/>
+    <BigSuccessButton2 text="This one is safe"/>
     </>
 	);
 }
